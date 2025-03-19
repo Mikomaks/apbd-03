@@ -15,7 +15,7 @@ public class Kontener_Cieczowy : Kontener, IHazardNotifier
     
     public override string ToString()
     {
-        return serial + "(" + masa + "kg, " + this.own_masa + "kg, " + this.height + "cm, "+  this.depth + "cm)";
+        return serial + "(" + masa + "kg, " + this.own_masa + "kg, " + this.height + "cm, "+  this.depth + "cm) -- " + (this.isDangerous ? "Niebezpieczny" : "Nie groźny");
     }
     
     public override string empty()
@@ -49,7 +49,7 @@ public class Kontener_Cieczowy : Kontener, IHazardNotifier
 
         return "Kontener: " + this.serial + " został załadowany:"
                + how_much + "kg (całkowita masa: " + this.masa +
-               "kg) -- " + this.isDangerous;
+               "kg) -- " + (this.isDangerous ? "Niebezpieczny" : "Nie groźny");
     }
 
 

@@ -49,4 +49,14 @@ public abstract class Kontener
     
     public abstract string fill(double how_much);
 
+    public double getMasaCalkowita()
+    {
+        return masa + own_masa;
+    }
+
+    public string getSerial()
+    {
+        return serial;
+    }
+
 }
