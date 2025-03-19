@@ -54,13 +54,31 @@ Console.WriteLine(test3);
 Kontenerowiec statek = new Kontenerowiec("Czarna perła",10,100,1000);
 statek.zaladuj(test1);
 statek.zaladuj(test2);
-statek.zaladuj(test3);
+//statek.zaladuj(test3);
 
-statek.rozladuj("KON-C-01");
+//statek.rozladuj("KON-C-01");
 //Console.WriteLine(statek);
 
 Kontenerowiec statek_krzak = new Kontenerowiec("Krzak",1,5,10);
-statek.przenies("KON-L-02", statek_krzak);
+//statek.przenies("KON-L-02", statek_krzak);
+List<Kontener> nowy_sklad = new List<Kontener>{test1,test2,test3};
+//statek_krzak.setSklad(nowy_sklad);
+
+statek.zamien(test3,test1.getSerial());
 
 Console.WriteLine(statek);
-Console.WriteLine(statek_krzak);
+//Console.WriteLine(statek_krzak);
+
+
+/*testy:
+❤️Stworzenie kontenera danego typu
+❤️Załadowanie ładunku do danego kontenera
+❤️Załadowanie kontenera na statek
+❤️Załadowanie listy kontenerów na statek
+❤️Usunięcie kontenera ze statku
+❤️Rozładowanie kontenera
+❤️Zastąpienie kontenera na statku o danym numerze innym kontenerem
+❤️Możliwość przeniesienie kontenera między dwoma statkami
+❤️Wypisanie informacji o danym kontenerze
+❤️Wypisanie informacji o danym statku i jego ładunku
+*/

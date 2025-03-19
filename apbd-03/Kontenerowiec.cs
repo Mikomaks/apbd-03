@@ -79,9 +79,51 @@ public class Kontenerowiec
     //nadpisanie skladu
     public void setSklad(List<Kontener> nowy_sklad)
     {
-        this.sklad = nowy_sklad;
+        double combined = nowy_sklad.Sum((kon) => {return kon.getMasaCalkowita();});
+        if (nowy_sklad.Count < max_carry && combined <= max_weight_tonnes*1000)
+        {
+            foreach (Kontener kon in nowy_sklad)
+            {
+                this.zaladuj(kon);
+            }
+        }
+        else
+        {
+            Console.WriteLine("Nowy skład nie spełnia warunków docelowego statku!!!");
+            this.manifest.Add("Próba przekroczenia norm!!!");
+        }
+        
     }
 
+    public void zamien(Kontener kontener, string target)
+    {
+        if (this.sklad.Exists((kon) => { return kon.getSerial().Equals(target); }))
+        {
+            Kontener podmianka = this.sklad.Find((kon) => { return kon.getSerial().Equals(target);});
+            
+            //waga_aktualna - masa_tego_co_jest + masa_tego_co_bedzie <= masa_dopuszczalna
+            if (sklad.Sum((kon) => {return kon.getMasaCalkowita();}) - podmianka.getMasaCalkowita() + kontener.getMasaCalkowita() <= max_weight_tonnes*1000)
+            {
+                this.rozladuj(target);
+                this.zaladuj(kontener);
+                this.manifest.Add("Podmianka: " + kontener.getSerial() + " -> " + target);
+            }
+            else
+            {
+                Console.WriteLine("Masa nowego kontenera jest za duża!!!");
+            }
+            
+            
+        }
+        else
+        {
+            //jak nie ma to jest problem
+            Console.WriteLine("Taki kontener nie istnieje na statku!!! [" + target + "]");
+        }
+        
+        
+    }
+    
     public void przenies(string serial, Kontenerowiec statek_docelowy)
     {   
         //jezeli taki kontener istnieje 
